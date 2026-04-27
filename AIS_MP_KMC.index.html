@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kaleigh Caulfield | Rutgers Business & Management</title>
+    <style>
+        :root {
+            --sage: #9caf88;
+            --charcoal: #36454f;
+            --cream: #f5f5dc;
+            --forest: #228b22;
+            --white: #ffffff;
+        }
+
+        /* ANIMATION PLACEHOLDERS */
+        .animate-on-load {}
+        .reveal-on-scroll {}
+        .hover-lift { transition: all 0.3s ease; }
+
+        body {
+            font-family: 'optima', 'Segoe UI', sans-serif;
+            line-height: 1.7;
+            color: var(--charcoal);
+            background-color: var(--cream);
+            margin: 0;
+        }
+
+        header {
+            background: var(--white);
+            padding: 1.5rem 10%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid var(--sage);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .hero {
+            padding: 100px 10%;
+            background: var(--white);
+            display: flex;
+            align-items: center;
+            gap: 50px;
+            flex-wrap: wrap; /* Ensures it looks good on mobile */
+        }
+
+        .hero-text {
+            flex: 2;
+            min-width: 300px;
+        }
+
+        .hero-image-container {
+            flex: 1;
+            min-width: 280px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .profile-img {
+            width: 300px;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 4px; /* Slight roundness for sophistication */
+            border: 8px solid var(--cream);
+            outline: 2px solid var(--sage);
+            box-shadow: 15px 15px 0px var(--sage);
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            color: var(--charcoal);
+            margin: 0;
+            line-height: 1.1;
+        }
+
+        .hero span { color: var(--forest); }
+
+        .btn {
+            display: inline-block;
+            background: var(--forest);
+            color: var(--cream);
+            padding: 16px 32px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            margin-top: 30px;
+            width: fit-content;
+        }
+
+        section { padding: 80px 10%; }
+
+        .section-title {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--sage);
+            margin-bottom: 20px;
+            display: block;
+            font-weight: bold;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .card {
+            background: var(--white);
+            padding: 40px;
+            border-radius: 4px;
+            border-left: 4px solid var(--sage);
+            box-shadow: 10px 10px 0px var(--sage);
+        }
+
+        .card h3 { color: var(--forest); margin-top: 0; }
+
+        footer {
+            padding: 80px 10%;
+            background: var(--charcoal);
+            color: var(--cream);
+            text-align: center;
+        }
+
+        .contact-link {
+            font-size: 1.8rem;
+            color: var(--sage);
+            text-decoration: none;
+            display: block;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo"><strong>KALEIGH CAULFIELD</strong></div>
+        <nav>
+            <a href="#about" style="margin-left: 30px; text-decoration: none; color: var(--charcoal); font-weight: 500;">Background</a>
+            <a href="#experience" style="margin-left: 30px; text-decoration: none; color: var(--charcoal); font-weight: 500;">Experience</a>
+            <a href="#contact" style="margin-left: 30px; text-decoration: none; color: var(--charcoal); font-weight: 500;">Contact</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="hero-text">
+            <span class="section-title">Rutgers Business School</span>
+            <h1>Bridging business theory <br><span>with operational reality.</span></h1>
+            <p style="font-size: 1.2rem; margin-top: 20px;">
+                Management student at Rutgers, delivering high-impact leadership daily as a Manager at Gaby's Cafe.
+            </p>
+            <a href="#experience" class="btn hover-lift">View Professional Background</a>
+        </div>
+        
+        <div class="hero-image-container">
+            <img src="assets/ProfilePic.jpeg" alt="Kaleigh Caulfield Profile" class="profile-img animate-on-load">
+        </div>
+    </section>
+
+    <section id="about">
+        <span class="section-title">The Foundation</span>
+        <div class="grid">
+            <div class="card">
+                <h2 style="margin-top: 0; color: var(--forest);">Education</h2>
+                <p><strong>Rutgers Business School</strong><br>
+                Bachelor of Science Candidate<br>
+                <em>Focus: Business Administration & Management</em></p>
+            </div>
+            <div class="card">
+                <h2 style="margin-top: 0; color: var(--forest);">Key Skills</h2>
+                <ul style="list-style-type: none; padding: 0;">
+                    <li>✓ High-Pressure Leadership</li>
+                    <li>✓ Conflict Resolution & Service</li>
+                    <li>✓ Operational Workflow Design</li>
+                    <li>✓ Business Communications</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="experience">
+        <span class="section-title">Experience</span>
+        <div class="grid">
+            <div class="card hover-lift">
+                <h3>Manager</h3>
+                <p><strong>Gaby's Cafe</strong></p>
+                <p>Leading a diverse team to maintain operational excellence, managing complex scheduling, and ensuring financial accountability at the close of every shift.</p>
+            </div>
+            <div class="card hover-lift">
+                <h3>Service Professional</h3>
+                <p><strong>Gaby's Cafe</strong></p>
+                <p>Developing client relationships and multitasking in a fast-paced environment to ensure a seamless and professional dining experience.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact">
+        <span class="section-title" style="color: var(--cream);">Connect</span>
+        <h2>Ready to build the future?</h2>
+        <a href="mailto:kaleigh.caulfield@rutgers.edu" class="contact-link">kaleigh.caulfield@rutgers.edu</a>
+        <div style="margin-top: 40px; opacity: 0.7;">
+            <p>© 2026 Kaleigh Caulfield • Rutgers Business School</p>
+        </div>
+    </footer>
+
+</body>
+</html>
