@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kaleigh Caulfield | Rutgers Accounting</title>
+    <style>
+        :root {
+            --sage: #9caf88;
+            --charcoal: #36454f;
+            --cream: #f5f5dc;
+            --forest: #228b22;
+            --white: #ffffff;
+        }
+
+        body {
+            font-family: 'optima', 'Segoe UI', sans-serif;
+            line-height: 1.7;
+            color: var(--charcoal);
+            background-color: var(--cream);
+            margin: 0;
+        }
+
+        header {
+            background: var(--white);
+            padding: 1.5rem 10%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid var(--sage);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .hero {
+            padding: 80px 10%;
+            background: var(--white);
+            display: flex;
+            align-items: center;
+            gap: 50px;
+            flex-wrap: wrap;
+        }
+
+        .hero-text { flex: 2; min-width: 300px; }
+
+        .profile-img {
+            width: 280px;
+            height: 280px;
+            object-fit: cover;
+            border: 8px solid var(--cream);
+            outline: 2px solid var(--sage);
+            box-shadow: 15px 15px 0px var(--sage);
+        }
+
+        .hero h1 { font-size: 3rem; color: var(--charcoal); margin: 0; line-height: 1.1; }
+        .hero span { color: var(--forest); }
+
+        .btn {
+            display: inline-block;
+            background: var(--forest);
+            color: var(--cream);
+            padding: 14px 28px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            margin-top: 25px;
+            transition: transform 0.2s;
+        }
+
+        .btn:hover { transform: translateY(-3px); }
+
+        section { padding: 60px 10%; }
+
+        .section-title {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--sage);
+            margin-bottom: 30px;
+            display: block;
+            font-weight: bold;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            background: var(--white);
+            padding: 30px;
+            border-radius: 4px;
+            border-left: 4px solid var(--sage);
+            box-shadow: 8px 8px 0px var(--sage);
+        }
+
+        .card h3 { color: var(--forest); margin-top: 0; }
+
+        footer {
+            padding: 60px 10%;
+            background: var(--charcoal);
+            color: var(--cream);
+            text-align: center;
+        }
+
+        .contact-link {
+            font-size: 1.2rem;
+            color: var(--sage);
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo"><strong>KALEIGH CAULFIELD</strong></div>
+        <nav>
+            <a href="#about" style="text-decoration: none; color: var(--charcoal); font-weight: 500;">About</a>
+            <a href="#experience" style="margin-left: 20px; text-decoration: none; color: var(--charcoal); font-weight: 500;">Experience</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="hero-text">
+            <span class="section-title">Rutgers Business School</span>
+            <h1>Accounting student with <br><span>leadership at the core.</span></h1>
+            <p>Bridging technical accounting precision with high-pressure management experience from Gaby's Cafe.</p>
+            <a href="https://kmc622-hash.github.io/" class="btn">Launch My App</a>
+        </div>
+        <div>
+            <img src="assets/ProfilePic.jpeg" alt="Kaleigh Caulfield" class="profile-img">
+        </div>
+    </section>
+
+    <section id="about">
+        <span class="section-title">Education</span>
+        <div class="grid">
+            <div class="card">
+                <h3>Rutgers University</h3>
+                <p><strong>Accounting Major</strong><br>Bachelor of Science Candidate</p>
+            </div>
+            <div class="card">
+                <h3>RVCC Alumni</h3>
+                <p>Attended for 2 years. Active member of the <strong>Business Club</strong> at Raritan Valley Community College.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="experience">
+        <span class="section-title">Professional Experience</span>
+        <div class="grid">
+            <div class="card">
+                <h3>Manager & Waitress</h3>
+                <p><strong>Gaby's Cafe</strong></p>
+                <p>Leading operations, resolving conflicts, and managing time-sensitive customer service in a local environment.</p>
+            </div>
+            <div class="card">
+                <h3>Skills</h3>
+                <p>Leadership • Conflict Resolution • Customer Service • Time Management</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <h2>Connect With Me</h2>
+        <a href="mailto:kmc622@scarletmail.rutgers.edu" class="contact-link">kmc622@scarletmail.rutgers.edu</a>
+        <p style="margin-top: 30px; opacity: 0.6;">© 2026 Kaleigh Caulfield</p>
+    </footer>
+
+</body>
+</html>
