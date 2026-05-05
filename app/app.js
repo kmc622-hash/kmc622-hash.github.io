@@ -1,9 +1,9 @@
 // --- Game State ---
 let questions = [];
 let currentIdx = 0;
-let currentMode = 'study'; // 'study' or 'test'
+let currentMode = 'study'; 
 let streak = 0;
-let lives = 1; // "One more try" buffer
+let lives = 1; 
 let userRank = "Accounting Intern 🌱";
 
 // --- DOM Elements ---
@@ -18,20 +18,24 @@ const rankIcon = document.getElementById('rank-icon');
 
 // --- Initialization ---
 async function initApp() {
+    console.log("App initializing...");
     try {
-        const response = await fetch('questions.json');
+        // Using ./ ensures it looks in the current directory on GitHub
+        const response = await fetch('./questions.json');
+        if (!response.ok) throw new Error("Could not find questions.json");
+        
         const data = await response.json();
         questions = data.accounting_app_data.questions;
+        console.log("Ledger data loaded successfully:", questions.length, "questions found.");
+        
         renderCurrentQuestion();
     } catch (error) {
-        console.error("Error loading ledger data:", error);
+        console.error("Critical Error loading ledger data:", error);
+        document.getElementById('card-question-text').innerText = "Error: Could not load questions. Check console.";
     }
 }
 
 // --- Mode Switching ---
-document.getElementById('study-mode-btn').addEventListener('click', (e) => switchMode('study', e.target));
-document.getElementById('test-mode-btn').addEventListener('click', (e) => switchMode('test', e.target));
-
 function switchMode(mode, btn) {
     currentMode = mode;
     document.querySelectorAll('.mode-toggle button').forEach(b => b.classList.remove('active'));
@@ -49,11 +53,12 @@ function switchMode(mode, btn) {
 
 // --- Rendering Logic ---
 function renderCurrentQuestion() {
+    if (questions.length === 0) return;
+    
     const q = questions[currentIdx];
     const progressPercent = ((currentIdx + 1) / questions.length) * 100;
     progressBar.style.width = `${progressPercent}%`;
 
-    // Render Key Terms
     const termsList = document.getElementById('key-terms-list');
     termsList.innerHTML = q.key_terms.map(term => `<span class="term-chip">${term}</span>`).join('');
 
@@ -88,11 +93,10 @@ function handleQuizAnswer(selected, btn) {
     if (selected === q.correct_answer) {
         btn.classList.add('correct');
         streak++;
-        lives = 1; // Reset life on success
+        lives = 1; 
         feedback.innerText = "Correct! The books are in balance! ✅";
         updateGamification();
         
-        // Success celebration
         if (streak % 5 === 0) triggerConfetti();
         
         setTimeout(nextQuestion, 1500);
@@ -131,15 +135,20 @@ function nextQuestion() {
 }
 
 function triggerConfetti() {
-    confetti({
-        particleCount: 100,
-        spread: 70,
-        origin: { y: 0.6 },
-        colors: ['#1e3a8a', '#fbbf24', '#10b981']
-    });
+    if (typeof confetti === 'function') {
+        confetti({
+            particleCount: 100,
+            spread: 70,
+            origin: { y: 0.6 },
+            colors: ['#1e3a8a', '#fbbf24', '#10b981']
+        });
+    }
 }
 
-// --- Flashcard Interaction ---
+// --- Event Listeners ---
+document.getElementById('study-mode-btn').addEventListener('click', (e) => switchMode('study', e.target));
+document.getElementById('test-mode-btn').addEventListener('click', (e) => switchMode('test', e.target));
+
 cardElement.addEventListener('click', () => {
     cardElement.classList.toggle('is-flipped');
 });
@@ -151,4 +160,4 @@ document.getElementById('prev-btn').addEventListener('click', () => {
 });
 
 // Launch!
-initApp();
+window.onload = initApp;
