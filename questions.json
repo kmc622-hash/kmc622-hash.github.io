@@ -1,0 +1,208 @@
+{
+  "accounting_app_data": {
+    "version": "1.1",
+    "description": "Professional Accounting Knowledge Base with Distractor Analysis",
+    "questions": [
+      {
+        "id": "FIN-001",
+        "category": "Financial Accounting",
+        "sub_category": "Foundations",
+        "difficulty": "Beginner",
+        "type": "conceptual",
+        "prompt": "Which accounting principle dictates that expenses must be recognized in the same period as the revenues they helped to generate?",
+        "options": ["The Cost Principle", "The Matching Principle", "The Revenue Recognition Principle", "The Conservatism Constraint"],
+        "correct_answer": "The Matching Principle",
+        "incorrect_explanations": {
+          "The Cost Principle": "This dictates that assets should be recorded at their original purchase price, not current market value.",
+          "The Revenue Recognition Principle": "This tells you *when* to record revenue, but doesn't specifically address the associated expenses.",
+          "The Conservatism Constraint": "This advises choosing the option that least overstates assets/income, but isn't the primary rule for expense timing."
+        },
+        "hint": "Think about the timing of accruals to ensure profit isn't overstated. 💡",
+        "flashcard_back": "The Matching Principle ensures that the income statement reflects the true cost of earning the reported revenue.",
+        "professional_insight": "Under ASC 606, this is largely superseded by the 'transfer of control' model, but the core logic remains vital for period-end adjustments.",
+        "key_terms": ["Accrual Accounting", "Matching", "GAAP"],
+        "standard_reference": "FASB Concept Statement No. 8"
+      },
+      {
+        "id": "AUD-001",
+        "category": "Auditing",
+        "sub_category": "Standards",
+        "difficulty": "Intermediate",
+        "type": "conceptual",
+        "prompt": "What is the highest level of assurance an auditor can provide on a set of financial statements?",
+        "options": ["Limited Assurance", "Absolute Assurance", "Reasonable Assurance", "Negative Assurance"],
+        "correct_answer": "Reasonable Assurance",
+        "incorrect_explanations": {
+          "Limited Assurance": "This is a lower level of assurance, typically provided in 'Reviews' rather than 'Audits'.",
+          "Absolute Assurance": "This is impossible due to the nature of sampling and potential for management fraud.",
+          "Negative Assurance": "This is a statement that 'nothing came to our attention,' used in reviews, not a full audit opinion."
+        },
+        "hint": "Because of sampling and inherent limitations, auditors can never be 100% certain. 🔍",
+        "flashcard_back": "Reasonable assurance is a high, but not absolute, level of assurance.",
+        "professional_insight": "If an employer asks why we don't provide absolute assurance, mention 'inherent limitations' like fraud concealment and management override.",
+        "key_terms": ["Audit Risk", "Material Misstatement", "Assurance"],
+        "standard_reference": "AU-C Section 200"
+      },
+      {
+        "id": "TAX-001",
+        "category": "Tax",
+        "sub_category": "Corporate Tax",
+        "difficulty": "Intermediate",
+        "type": "calculation",
+        "prompt": "A company has $200,000 in Book Income. It received $10,000 in municipal bond interest. What is the Taxable Income?",
+        "options": ["$210,000", "$200,000", "$190,000", "$180,000"],
+        "correct_answer": "$190,000",
+        "incorrect_explanations": {
+          "$210,000": "This incorrectly adds tax-exempt interest to book income instead of subtracting it.",
+          "$200,000": "This fails to account for the permanent difference created by the tax-exempt status of municipal bonds.",
+          "$180,000": "This likely results from a double-subtraction or incorrect math."
+        },
+        "hint": "Municipal bond interest is a permanent difference that is generally non-taxable. 📉",
+        "flashcard_back": "Taxable Income = Book Income - Favorable Permanent Differences.",
+        "professional_insight": "Permanent differences affect the Effective Tax Rate (ETR), whereas temporary differences create Deferred Tax Assets/Liabilities.",
+        "key_terms": ["Permanent Difference", "M-1 Reconciliation", "Tax-Exempt Interest"],
+        "standard_reference": "IRC Section 103"
+      },
+      {
+        "id": "FIN-002",
+        "category": "Financial Accounting",
+        "sub_category": "Inventory",
+        "difficulty": "Intermediate",
+        "type": "conceptual",
+        "prompt": "In a period of rising prices (inflation), which inventory valuation method results in the lowest Net Income?",
+        "options": ["FIFO (First-In, First-Out)", "LIFO (Last-In, First-Out)", "Weighted Average Cost", "Specific Identification"],
+        "correct_answer": "LIFO (Last-In, First-Out)",
+        "incorrect_explanations": {
+          "FIFO (First-In, First-Out)": "During inflation, FIFO uses older, cheaper costs for COGS, which actually *increases* Net Income.",
+          "Weighted Average Cost": "This averages costs, resulting in a Net Income higher than LIFO but lower than FIFO.",
+          "Specific Identification": "This depends entirely on which specific units were sold and doesn't have a consistent inflationary trend like LIFO."
+        },
+        "hint": "Think about which method puts the most expensive (newest) units into Cost of Goods Sold. 🛒",
+        "flashcard_back": "LIFO matches the most recent, higher costs against current revenue, increasing COGS and decreasing Net Income.",
+        "professional_insight": "The 'LIFO Conformity Rule' requires companies to use LIFO for financial reporting if they use it for tax purposes to lower tax liability.",
+        "key_terms": ["COGS", "Inflationary Environment", "LIFO Reserve"],
+        "standard_reference": "ASC 330"
+      },
+      {
+        "id": "AUD-002",
+        "category": "Auditing",
+        "sub_category": "Ethics",
+        "difficulty": "Beginner",
+        "type": "conceptual",
+        "prompt": "Which of the following is considered a 'threat to independence' when an auditor has a direct financial interest in a client?",
+        "options": ["Advocacy Threat", "Familiarity Threat", "Self-Interest Threat", "Intimidation Threat"],
+        "correct_answer": "Self-Interest Threat",
+        "incorrect_explanations": {
+          "Advocacy Threat": "This occurs when an auditor promotes a client's position to the point that objectivity is compromised.",
+          "Familiarity Threat": "This occurs due to a long or close relationship with a client, not necessarily a financial interest.",
+          "Intimidation Threat": "This occurs when an auditor is deterred from acting objectively by actual or perceived pressures."
+        },
+        "hint": "If the auditor's personal wealth depends on the client's stock price, can they be objective? 🛑",
+        "flashcard_back": "Independence in fact and appearance is the cornerstone of the auditing profession.",
+        "professional_insight": "In practice, even 'immaterial' direct financial interests are strictly prohibited for covered members.",
+        "key_terms": ["AICPA Code of Professional Conduct", "Objectivity", "Independence"],
+        "standard_reference": "ET Section 1.200"
+      },
+      {
+        "id": "COST-001",
+        "category": "Managerial Accounting",
+        "sub_category": "Cost Behavior",
+        "difficulty": "Beginner",
+        "type": "calculation",
+        "prompt": "If Fixed Costs are $50,000 and the Contribution Margin Ratio is 40%, what is the Break-Even Point in Sales Dollars?",
+        "options": ["$125,000", "$20,000", "$200,000", "$83,333"],
+        "correct_answer": "$125,000",
+        "incorrect_explanations": {
+          "$20,000": "This is the result of multiplying 50,000 by 0.40, which is not the break-even formula.",
+          "$200,000": "This would be the result if the Contribution Margin Ratio were 25% ($50,000 / 0.25).",
+          "$83,333": "This result comes from dividing by 0.60 (the variable cost ratio) instead of the CM ratio."
+        },
+        "hint": "Break-Even Sales = Fixed Costs / Contribution Margin Ratio. ⚖️",
+        "flashcard_back": "At the break-even point, total contribution margin exactly equals total fixed costs.",
+        "professional_insight": "Managers use this to determine the 'Margin of Safety'—how much sales can drop before the company hits a loss.",
+        "key_terms": ["CVP Analysis", "Fixed Costs", "Contribution Margin"],
+        "standard_reference": "IMA Management Accounting Statements"
+      },
+      {
+        "id": "FIN-003",
+        "category": "Financial Accounting",
+        "sub_category": "Liabilities",
+        "difficulty": "Advanced",
+        "type": "conceptual",
+        "prompt": "How should a 'Probable' contingency be treated if the loss amount can be reasonably estimated?",
+        "options": ["Disclosed in the notes only", "Accrued as a liability and expensed", "Ignored until the loss is realized", "Recorded as an asset"],
+        "correct_answer": "Accrued as a liability and expensed",
+        "incorrect_explanations": {
+          "Disclosed in the notes only": "Disclosure alone is for 'Reasonably Possible' contingencies or 'Probable' ones where the amount isn't estimable.",
+          "Ignored until the loss is realized": "This violates the principle of conservatism and accrual accounting requirements for probable losses.",
+          "Recorded as an asset": "Contingencies represent potential losses/liabilities; you cannot record a 'gain contingency' as an asset until it is realized."
+        },
+        "hint": "GAAP requires conservatism. If it's likely and measurable, put it on the books. ⚖️",
+        "flashcard_back": "Contingent liabilities are accrued if the event is both Probable and Estimable.",
+        "professional_insight": "If only a range is estimable, GAAP requires the 'minimum' of the range to be accrued, whereas IFRS requires the 'midpoint'.",
+        "key_terms": ["Contingent Liability", "Conservatism", "Accrual"],
+        "standard_reference": "ASC 450"
+      },
+      {
+        "id": "TAX-002",
+        "category": "Tax",
+        "sub_category": "Basis",
+        "difficulty": "Advanced",
+        "type": "conceptual",
+        "prompt": "What happens to a partner's basis in a partnership when the partnership takes on additional recourse debt?",
+        "options": ["The basis decreases", "The basis increases", "The basis remains unchanged", "Basis only changes for S-Corporations"],
+        "correct_answer": "The basis increases",
+        "incorrect_explanations": {
+          "The basis decreases": "Basis decreases with cash distributions or losses, not with the assumption of entity-level debt.",
+          "The basis remains unchanged": "Partnership law allows debt to increase basis (unlike S-Corp law), which allows for more loss deductions.",
+          "Basis only changes for S-Corporations": "Incorrect; S-Corp basis is actually more restrictive regarding debt than Partnership basis."
+        },
+        "hint": "In a partnership, debt is treated as a deemed contribution of cash by the partners. 💰",
+        "flashcard_back": "Partnership basis includes the partner's share of partnership liabilities.",
+        "professional_insight": "This is a key difference between Partnerships and S-Corps; S-Corp shareholders do not get basis for entity-level debt.",
+        "key_terms": ["Outside Basis", "Recourse Debt", "Subchapter K"],
+        "standard_reference": "IRC Section 752"
+      },
+      {
+        "id": "AUD-003",
+        "category": "Auditing",
+        "sub_category": "Internal Controls",
+        "difficulty": "Intermediate",
+        "type": "conceptual",
+        "prompt": "Which of the following is an example of 'Segregation of Duties' to prevent fraud?",
+        "options": ["Having one person open mail and record payments", "Ensuring the person who authorizes a transaction does not record it", "Allowing the CEO to sign all checks regardless of amount", "Merging the IT and Accounting departments"],
+        "correct_answer": "Ensuring the person who authorizes a transaction does not record it",
+        "incorrect_explanations": {
+          "Having one person open mail and record payments": "This is a classic 'Control Weakness'—one person has both custody of assets and recording authority.",
+          "Allowing the CEO to sign all checks regardless of amount": "Strong controls usually require 'dual signatures' or limits to prevent management override.",
+          "Merging the IT and Accounting departments": "This creates a risk where one person could alter financial code and record transactions undetected."
+        },
+        "hint": "Separate Custody, Authorization, and Record-keeping (CAR). 🔑",
+        "flashcard_back": "Segregation of duties ensures that no single individual can perpetrate and conceal an error or fraud.",
+        "professional_insight": "In small businesses where segregation is impossible, 'Compensating Controls' like direct owner oversight are required.",
+        "key_terms": ["Internal Controls", "Fraud Triangle", "CAR"],
+        "standard_reference": "COSO Framework"
+      },
+      {
+        "id": "FIN-004",
+        "category": "Financial Accounting",
+        "sub_category": "Cash Flow",
+        "difficulty": "Intermediate",
+        "type": "conceptual",
+        "prompt": "Under the Indirect Method, how is an increase in Accounts Receivable treated when calculating Cash Flow from Operations?",
+        "options": ["Added to Net Income", "Subtracted from Net Income", "Ignored as a non-cash item", "Classified as an Investing Activity"],
+        "correct_answer": "Subtracted from Net Income",
+        "incorrect_explanations": {
+          "Added to Net Income": "You would add back a *decrease* in AR, as that represents cash collected from customers.",
+          "Ignored as a non-cash item": "While AR itself is non-cash, the *change* in AR must be reconciled to move from Accrual to Cash basis.",
+          "Classified as an Investing Activity": "AR is a current operating asset; Investing activities involve long-term assets like PPE."
+        },
+        "hint": "If AR went up, you earned revenue but didn't receive the cash yet. 💸",
+        "flashcard_back": "Increases in Current Assets represent a use of cash and are subtracted from Net Income.",
+        "professional_insight": "Recruiters often use this to test if you understand the actual movement of cash versus accounting entries.",
+        "key_terms": ["Statement of Cash Flows", "Operating Activities", "Indirect Method"],
+        "standard_reference": "ASC 230"
+      }
+    ]
+  }
+}
