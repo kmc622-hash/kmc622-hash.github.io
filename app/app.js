@@ -1,4 +1,3 @@
-// --- Game State ---
 let questions = [];
 let currentIdx = 0;
 let currentMode = 'study'; 
@@ -6,7 +5,6 @@ let streak = 0;
 let lives = 1; 
 let userRank = "Accounting Intern 🌱";
 
-// --- DOM Elements ---
 const cardElement = document.getElementById('card-element');
 const quizSection = document.getElementById('quiz-section');
 const flashcardSection = document.getElementById('flashcard-section');
@@ -16,30 +14,23 @@ const livesDisplay = document.getElementById('lives-display');
 const rankTitle = document.getElementById('rank-title');
 const rankIcon = document.getElementById('rank-icon');
 
-// --- Initialization ---
 async function initApp() {
     try {
-        // This MUST match your filename 'questions.json' exactly
         const response = await fetch('./questions.json');
-        if (!response.ok) throw new Error("File not found");
-        
+        if (!response.ok) throw new Error("Could not find questions.json");
         const data = await response.json();
         questions = data.accounting_app_data.questions;
-        
         renderCurrentQuestion();
     } catch (error) {
-        console.error("Data error:", error);
-        const qText = document.getElementById('card-question-text');
-        if(qText) qText.innerText = "Check your filename: questions.json";
+        console.error("Critical Error:", error);
+        document.getElementById('card-question-text').innerText = "Data load failed. Check console.";
     }
 }
 
-// --- Mode Switching ---
 function switchMode(mode, btn) {
     currentMode = mode;
     document.querySelectorAll('.mode-toggle button').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
-    
     if (mode === 'study') {
         flashcardSection.classList.remove('hidden');
         quizSection.classList.add('hidden');
@@ -50,21 +41,12 @@ function switchMode(mode, btn) {
     renderCurrentQuestion();
 }
 
-// --- Rendering Logic ---
 function renderCurrentQuestion() {
     if (questions.length === 0) return;
-    
     const q = questions[currentIdx];
     
-    // Update Progress
-    const progressPercent = ((currentIdx + 1) / questions.length) * 100;
-    if(progressBar) progressBar.style.width = `${progressPercent}%`;
-
-    // Render Key Terms
-    const termsList = document.getElementById('key-terms-list');
-    if(termsList) {
-        termsList.innerHTML = q.key_terms.map(term => `<span class="term-chip">${term}</span>`).join('');
-    }
+    progressBar.style.width = `${((currentIdx + 1) / questions.length) * 100}%`;
+    document.getElementById('key-terms-list').innerHTML = q.key_terms.map(term => `<span class="term-chip">${term}</span>`).join('');
 
     if (currentMode === 'study') {
         document.getElementById('card-category').innerText = q.category;
@@ -75,20 +57,18 @@ function renderCurrentQuestion() {
     } else {
         document.getElementById('quiz-category').innerText = q.category;
         document.getElementById('quiz-question-text').innerText = q.prompt;
-        const optionsContainer = document.getElementById('options-container');
-        optionsContainer.innerHTML = '';
-        
+        const container = document.getElementById('options-container');
+        container.innerHTML = '';
         q.options.forEach(opt => {
             const btn = document.createElement('button');
             btn.className = 'option-btn';
             btn.innerText = opt;
             btn.onclick = () => handleQuizAnswer(opt, btn);
-            optionsContainer.appendChild(btn);
+            container.appendChild(btn);
         });
     }
 }
 
-// --- Gamification Logic ---
 function handleQuizAnswer(selected, btn) {
     const q = questions[currentIdx];
     const feedback = document.getElementById('feedback-message');
@@ -97,21 +77,24 @@ function handleQuizAnswer(selected, btn) {
     if (selected === q.correct_answer) {
         btn.classList.add('correct');
         streak++;
-        lives = 1; 
+        lives = 1;
         feedback.innerText = "Correct! The books are in balance! ✅";
+        feedback.style.background = "#dcfce7";
+        feedback.style.color = "#166534";
         updateGamification();
-        if (streak % 5 === 0) triggerConfetti();
+        if (streak % 5 === 0) confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
         setTimeout(nextQuestion, 1500);
     } else {
         btn.classList.add('incorrect');
         if (lives > 0) {
             lives--;
             feedback.innerText = `⚠️ ${q.incorrect_explanations[selected]}`;
+            feedback.style.background = "#fef2f2";
+            feedback.style.color = "#991b1b";
             livesDisplay.innerText = "❤️ (Last Credit!)";
         } else {
-            feedback.innerText = `Streak reset. 📉 Answer: ${q.correct_answer}`;
-            streak = 0;
-            lives = 1;
+            feedback.innerText = `Audit Failed! Answer: ${q.correct_answer}`;
+            streak = 0; lives = 1;
             updateGamification();
             setTimeout(nextQuestion, 2500);
         }
@@ -122,7 +105,6 @@ function updateGamification() {
     streakCount.innerText = streak;
     document.getElementById('streak-fire').classList.toggle('active', streak >= 3);
     livesDisplay.innerText = lives > 0 ? "❤️❤️" : "❤️💔";
-
     if (streak > 15) { userRank = "Senior Associate 💼"; rankIcon.innerText = "💼"; }
     else if (streak > 5) { userRank = "Staff Accountant 📎"; rankIcon.innerText = "📎"; }
     else { userRank = "Accounting Intern 🌱"; rankIcon.innerText = "🌱"; }
@@ -131,18 +113,10 @@ function updateGamification() {
 
 function nextQuestion() {
     currentIdx = (currentIdx + 1) % questions.length;
-    const feedback = document.getElementById('feedback-message');
-    if(feedback) feedback.classList.add('hidden');
+    document.getElementById('feedback-message').classList.add('hidden');
     renderCurrentQuestion();
 }
 
-function triggerConfetti() {
-    if (typeof confetti === 'function') {
-        confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
-    }
-}
-
-// --- Listeners ---
 document.getElementById('study-mode-btn').addEventListener('click', (e) => switchMode('study', e.target));
 document.getElementById('test-mode-btn').addEventListener('click', (e) => switchMode('test', e.target));
 cardElement.addEventListener('click', () => cardElement.classList.toggle('is-flipped'));
@@ -152,5 +126,4 @@ document.getElementById('prev-btn').addEventListener('click', () => {
     renderCurrentQuestion();
 });
 
-// Launch!
 window.onload = initApp;
