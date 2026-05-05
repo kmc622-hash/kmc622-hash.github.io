@@ -18,20 +18,19 @@ const rankIcon = document.getElementById('rank-icon');
 
 // --- Initialization ---
 async function initApp() {
-    console.log("App initializing...");
     try {
-        // Using ./ ensures it looks in the current directory on GitHub
+        // This MUST match your filename 'questions.json' exactly
         const response = await fetch('./questions.json');
-        if (!response.ok) throw new Error("Could not find questions.json");
+        if (!response.ok) throw new Error("File not found");
         
         const data = await response.json();
         questions = data.accounting_app_data.questions;
-        console.log("Ledger data loaded successfully:", questions.length, "questions found.");
         
         renderCurrentQuestion();
     } catch (error) {
-        console.error("Critical Error loading ledger data:", error);
-        document.getElementById('card-question-text').innerText = "Error: Could not load questions. Check console.";
+        console.error("Data error:", error);
+        const qText = document.getElementById('card-question-text');
+        if(qText) qText.innerText = "Check your filename: questions.json";
     }
 }
 
@@ -56,11 +55,16 @@ function renderCurrentQuestion() {
     if (questions.length === 0) return;
     
     const q = questions[currentIdx];
+    
+    // Update Progress
     const progressPercent = ((currentIdx + 1) / questions.length) * 100;
-    progressBar.style.width = `${progressPercent}%`;
+    if(progressBar) progressBar.style.width = `${progressPercent}%`;
 
+    // Render Key Terms
     const termsList = document.getElementById('key-terms-list');
-    termsList.innerHTML = q.key_terms.map(term => `<span class="term-chip">${term}</span>`).join('');
+    if(termsList) {
+        termsList.innerHTML = q.key_terms.map(term => `<span class="term-chip">${term}</span>`).join('');
+    }
 
     if (currentMode === 'study') {
         document.getElementById('card-category').innerText = q.category;
@@ -84,7 +88,7 @@ function renderCurrentQuestion() {
     }
 }
 
-// --- Gamification & Logic ---
+// --- Gamification Logic ---
 function handleQuizAnswer(selected, btn) {
     const q = questions[currentIdx];
     const feedback = document.getElementById('feedback-message');
@@ -96,18 +100,16 @@ function handleQuizAnswer(selected, btn) {
         lives = 1; 
         feedback.innerText = "Correct! The books are in balance! ✅";
         updateGamification();
-        
         if (streak % 5 === 0) triggerConfetti();
-        
         setTimeout(nextQuestion, 1500);
     } else {
         btn.classList.add('incorrect');
         if (lives > 0) {
             lives--;
-            feedback.innerText = `⚠️ Careful! ${q.incorrect_explanations[selected]}`;
-            livesDisplay.innerText = "❤️ (Last Audit Credit!)";
+            feedback.innerText = `⚠️ ${q.incorrect_explanations[selected]}`;
+            livesDisplay.innerText = "❤️ (Last Credit!)";
         } else {
-            feedback.innerText = `Audit Failed! Streak reset. 📉 Correct: ${q.correct_answer}`;
+            feedback.innerText = `Streak reset. 📉 Answer: ${q.correct_answer}`;
             streak = 0;
             lives = 1;
             updateGamification();
@@ -124,35 +126,26 @@ function updateGamification() {
     if (streak > 15) { userRank = "Senior Associate 💼"; rankIcon.innerText = "💼"; }
     else if (streak > 5) { userRank = "Staff Accountant 📎"; rankIcon.innerText = "📎"; }
     else { userRank = "Accounting Intern 🌱"; rankIcon.innerText = "🌱"; }
-    
     rankTitle.innerText = userRank;
 }
 
 function nextQuestion() {
     currentIdx = (currentIdx + 1) % questions.length;
-    document.getElementById('feedback-message').classList.add('hidden');
+    const feedback = document.getElementById('feedback-message');
+    if(feedback) feedback.classList.add('hidden');
     renderCurrentQuestion();
 }
 
 function triggerConfetti() {
     if (typeof confetti === 'function') {
-        confetti({
-            particleCount: 100,
-            spread: 70,
-            origin: { y: 0.6 },
-            colors: ['#1e3a8a', '#fbbf24', '#10b981']
-        });
+        confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
     }
 }
 
-// --- Event Listeners ---
+// --- Listeners ---
 document.getElementById('study-mode-btn').addEventListener('click', (e) => switchMode('study', e.target));
 document.getElementById('test-mode-btn').addEventListener('click', (e) => switchMode('test', e.target));
-
-cardElement.addEventListener('click', () => {
-    cardElement.classList.toggle('is-flipped');
-});
-
+cardElement.addEventListener('click', () => cardElement.classList.toggle('is-flipped'));
 document.getElementById('next-btn').addEventListener('click', nextQuestion);
 document.getElementById('prev-btn').addEventListener('click', () => {
     currentIdx = (currentIdx - 1 + questions.length) % questions.length;
